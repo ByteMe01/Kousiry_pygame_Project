@@ -29,9 +29,9 @@ for x in range (0, WIDTH, terrain_width):
 player = Player()
 cars = Cars()
 
-falling_cars = []
+car_group = pygame.sprite.Group()
 for i in range(10):
-    falling_cars.append(Cars(randint(0,WIDTH), randint(0, 200)))
+    car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
 
 while running:
     # poll for events
@@ -50,9 +50,8 @@ while running:
     cars.update()
     cars.draw(screen)
 
-    for car in falling_cars:
-        car.update()
-        car.draw(screen)
+    car_group.update()
+    car_group.draw(screen)
 
     #####
 

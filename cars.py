@@ -2,8 +2,9 @@ import pygame
 from util_params import CAR_HEIGHT, CAR_WIDTH
 from random import randint
 
-class Cars:
+class Cars(pygame.sprite.Sprite):
     def __init__(self, x = CAR_WIDTH, y = CAR_HEIGHT):
+        pygame.sprite.Sprite.__init__(self)
         self.fp = 'attributes/hotdog.png'
         self.car = pygame.image.load(self.fp)
         car_scaling = (75, 75)
