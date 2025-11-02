@@ -1,7 +1,8 @@
 from util_params import PLAYER_HEIGHT, PLAYER_WIDTH
 import pygame
+from text_surface import *
 
-class Player():
+class Player(pygame.sprite.Sprite):
     def __init__(self, x = PLAYER_WIDTH, y = PLAYER_HEIGHT):
         self.fp = 'attributes/player_walk.png'
         self.player = pygame.image.load(self.fp)
@@ -18,6 +19,9 @@ class Player():
         #move character
         #update character rect position
         self.rect.center = (self.x, self.y)
+        
+
+
 
     def move(self, keys):
         if keys[pygame.K_LEFT]:
