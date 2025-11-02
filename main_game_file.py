@@ -54,6 +54,7 @@ while running:
         score_surface = score_font.render(score_system, False, (0,0,0))
 
 
+
         
         
 
@@ -70,8 +71,12 @@ while running:
         car_group.update()
         car_group.draw(screen)
 
+        final_score = f"Final Score: {int(active_age)}"
+        final_score_surface = score_font.render(final_score, True, (0,0,0))
+
         if pygame.sprite.spritecollide(player, car_group, False):
-            screen.fill("Black")
+            screen.fill("Blue")
+            screen.blit(final_score_surface, (220,0))
             game_state = False
     #####
 

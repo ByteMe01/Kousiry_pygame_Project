@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.y = y
         # center rect
         self.rect.center = (x,y)
-        self.vx = 3 # x velocity
+        self.vx = 4 # x velocity
 
     def update(self):
         #move character

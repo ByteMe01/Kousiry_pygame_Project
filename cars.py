@@ -1,11 +1,21 @@
 import pygame
 from util_params import CAR_HEIGHT, CAR_WIDTH
-from random import randint
+from random import randint, choice
 
 class Cars(pygame.sprite.Sprite):
     def __init__(self, x = CAR_WIDTH, y = CAR_HEIGHT):
         pygame.sprite.Sprite.__init__(self)
-        self.fp = 'attributes/hotdog.png'
+        self.vehicles = [
+            'attributes/hotdog.png',
+            'attributes/bus.png',
+            'attributes/scooter.png',
+            'attributes/tractor.png',
+            'attributes/vintage.png',
+            'attributes/sports_yellow.png',
+            'attributes/kart.png'
+        ]
+        
+        self.fp = choice(self.vehicles)
         self.car = pygame.image.load(self.fp)
         car_scaling = (75, 75)
         self.image = pygame.transform.scale(self.car, car_scaling)
