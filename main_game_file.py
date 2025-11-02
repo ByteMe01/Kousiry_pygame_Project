@@ -3,7 +3,7 @@ import pygame
 from random import randint
 from player import *
 from cars import *
-from text_surface import *
+from music import *
 
 # pygame setup
 pygame.init()
@@ -31,12 +31,13 @@ player = Player()
 cars = Cars()
 
 car_group = pygame.sprite.Group()
-for i in range(8):
+for i in range(10):
     car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
 
 
 start_time = pygame.time.get_ticks()
 score_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 100)
+main_track()
 game_state = True
 while running:
     # poll for events

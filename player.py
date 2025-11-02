@@ -1,12 +1,12 @@
 from util_params import PLAYER_HEIGHT, PLAYER_WIDTH
 import pygame
-from text_surface import *
+from music import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, x = PLAYER_WIDTH, y = PLAYER_HEIGHT):
         self.fp = 'attributes/player_walk.png'
         self.player = pygame.image.load(self.fp)
-        scale_size = (100,100)
+        scale_size = (90,90)
         self.image = pygame.transform.scale(self.player, scale_size)
         self.rect = self.image.get_rect()
         self.x = x
@@ -28,6 +28,11 @@ class Player(pygame.sprite.Sprite):
             self.x -= self.vx
         if keys[pygame.K_RIGHT]:
             self.x += self.vx
+        
+        if self.x > 950:
+            self.x = 950
+        if self.x < 50:
+            self.x = 50
 
     def draw(self, screen):
         # blit character to screen
