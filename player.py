@@ -20,9 +20,6 @@ class Player(pygame.sprite.Sprite):
         #update character rect position
         self.rect.center = (self.x, self.y)
         
-
-
-
     def move(self, keys):
         if keys[pygame.K_LEFT]:
             self.x -= self.vx

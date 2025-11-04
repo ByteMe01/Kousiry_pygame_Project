@@ -4,41 +4,30 @@ from random import randint
 from player import *
 from cars import *
 from music import *
+from util_params import *
+from background import *
 
 # pygame setup
 pygame.init()
 
 # Make screen properties
-WIDTH = 1000
-HEIGHT = 700
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
-running = True
+background = place_background()
 
-
-# Make Background
-terrain = 'attributes/backgroundColorGrass.png'
-terrain_surface = pygame.image.load(terrain)
-terrain_width = terrain_surface.get_width()
-terrain_height = terrain_surface.get_height()
-terrain_background = pygame.Surface((WIDTH, HEIGHT))
-
-# Loops over the background and places images on it
-for x in range (0, WIDTH, terrain_width):
-    terrain_background.blit(terrain_surface, (x,0))
-
+#Initialize all characters on screen
 player = Player()
 cars = Cars()
-
 car_group = pygame.sprite.Group()
 for i in range(10):
     car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
 
-
 start_time = pygame.time.get_ticks()
 score_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 100)
 main_track()
+
 game_state = True
+running = True
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -55,12 +44,8 @@ while running:
         score_surface = score_font.render(score_system, False, (0,0,0))
 
 
-
-        
-        
-
     ######RENDER YOUR GAME HERE#####
-        screen.blit(terrain_background, (0,0))
+        screen.blit(background,(0,0))
         player.update()
         player.draw(screen)
         cars.update()
