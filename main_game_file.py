@@ -6,6 +6,7 @@ from cars import *
 from music import *
 from util_params import *
 from background import *
+from scoring_system import *
 
 # pygame setup
 pygame.init()
@@ -13,6 +14,7 @@ pygame.init()
 # Make screen properties
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
+active_age = (pygame.time.get_ticks() - start_time)/1000
 background = place_background()
 
 #Initialize all characters on screen
@@ -22,8 +24,6 @@ car_group = pygame.sprite.Group()
 for i in range(10):
     car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
 
-start_time = pygame.time.get_ticks()
-score_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 100)
 main_track()
 
 game_state = True
@@ -38,24 +38,21 @@ while running:
         player_movement = pygame.key.get_pressed()
         player.move(player_movement)
 
-        active_age = (pygame.time.get_ticks() - start_time)/1000
-        score_system = f"Score: {int(active_age)}"
-
-        score_surface = score_font.render(score_system, False, (0,0,0))
 
 
     ######RENDER YOUR GAME HERE#####
         screen.blit(background,(0,0))
         player.update()
         player.draw(screen)
+
         cars.update()
         cars.draw(screen)
-        screen.blit(score_surface, (350,0))
-        
-        
-
         car_group.update()
         car_group.draw(screen)
+
+        score = scoring_init()
+        screen.blit(score, (220,0))
+
 
         final_score = f"Final Score: {int(active_age)}"
         final_score_surface = score_font.render(final_score, True, (0,0,0))
