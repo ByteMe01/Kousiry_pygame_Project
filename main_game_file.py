@@ -24,8 +24,11 @@ for i in range(10):
     car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
 main_track()
 
+#Set conditional flags for game operation
 game_state = True
 running = True
+
+#Start game loop
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -36,29 +39,34 @@ while running:
         player_movement = pygame.key.get_pressed()
         player.move(player_movement)
 
-    ######RENDER YOUR GAME HERE#####
+        #Set Screen
         screen.blit(background,(0,0))
+
+        #Set Player and Player Movement
         player.update()
         player.draw(screen)
 
+        #Set Cars and Car Generation
         cars.update()
         cars.draw(screen)
         car_group.update()
         car_group.draw(screen)
 
+        # Set scoring system 
         score = scoring_init()
         screen.blit(score, (350,0))
 
+        #Set condition that ends game and displays final score
         if pygame.sprite.spritecollide(player, car_group, False):
             end_score = final_score()
             screen.fill("Blue")
             screen.blit(end_score, (220,300))
             game_state = False
-    #####
 
     # flip() the display to put your work on screen
     pygame.display.flip()
 
-    clock.tick(60)  # limits FPS to 60
+    #FPS Limit to 60 FPS
+    clock.tick(60)
 
 pygame.quit()

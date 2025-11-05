@@ -1,10 +1,13 @@
 import pygame
 pygame.init()
 
+#Set game state flag, establish a starting time, init font 
 game_state = True
 start_time = pygame.time.get_ticks()
 score_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 100)
 
+# if game is running, score clock is running
+# every second the player is alive, subtract that number with total time then render calculated value on screen
 def scoring_init():
     if game_state == True:
         active_age = (pygame.time.get_ticks() - start_time)/1000
@@ -12,6 +15,8 @@ def scoring_init():
         score_surface = score_font.render(score_system, False, (0,0,0))
         return score_surface
 
+# This function took me a while to figure out
+# Takes on the final value from active_age and displays that 
 def final_score():
     active_age = (pygame.time.get_ticks() - start_time)/1000
     final_score = f"Final Score: {int(active_age)}"
