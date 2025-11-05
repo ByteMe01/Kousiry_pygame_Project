@@ -14,16 +14,14 @@ pygame.init()
 # Make screen properties
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
-active_age = (pygame.time.get_ticks() - start_time)/1000
 background = place_background()
 
-#Initialize all characters on screen
+#Initialize all characters on screen and music
 player = Player()
 cars = Cars()
 car_group = pygame.sprite.Group()
 for i in range(10):
     car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
-
 main_track()
 
 game_state = True
@@ -38,8 +36,6 @@ while running:
         player_movement = pygame.key.get_pressed()
         player.move(player_movement)
 
-
-
     ######RENDER YOUR GAME HERE#####
         screen.blit(background,(0,0))
         player.update()
@@ -51,15 +47,12 @@ while running:
         car_group.draw(screen)
 
         score = scoring_init()
-        screen.blit(score, (220,0))
-
-
-        final_score = f"Final Score: {int(active_age)}"
-        final_score_surface = score_font.render(final_score, True, (0,0,0))
+        screen.blit(score, (350,0))
 
         if pygame.sprite.spritecollide(player, car_group, False):
+            end_score = final_score()
             screen.fill("Blue")
-            screen.blit(final_score_surface, (220,0))
+            screen.blit(end_score, (220,300))
             game_state = False
     #####
 

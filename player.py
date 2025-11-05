@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x = PLAYER_WIDTH, y = PLAYER_HEIGHT):
         self.fp = 'attributes/player_walk.png'
         self.player = pygame.image.load(self.fp)
-        scale_size = (90,90)
+        scale_size = (80,80)
         self.image = pygame.transform.scale(self.player, scale_size)
         self.rect = self.image.get_rect()
         self.x = x

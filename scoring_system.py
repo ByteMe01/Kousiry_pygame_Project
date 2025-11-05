@@ -11,3 +11,9 @@ def scoring_init():
         score_system = f"Score: {int(active_age)}"
         score_surface = score_font.render(score_system, False, (0,0,0))
         return score_surface
+
+def final_score():
+    active_age = (pygame.time.get_ticks() - start_time)/1000
+    final_score = f"Final Score: {int(active_age)}"
+    final_score_surface = score_font.render(final_score, True, (0,0,0))
+    return final_score_surface
