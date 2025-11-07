@@ -62,6 +62,7 @@ while running:
             screen.fill("Blue")
             screen.blit(end_score, (220,300))
             game_state = False
+            end_main_track()
 
     # flip() the display to put your work on screen
     pygame.display.flip()

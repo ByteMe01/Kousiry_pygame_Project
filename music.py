@@ -7,3 +7,6 @@ pygame.mixer.music.load('attributes/music.mp3')
 # Function to play loaded track when called
 def main_track():
     pygame.mixer.music.play()
+
+def end_main_track():
+    pygame.mixer.music.fadeout(3000)

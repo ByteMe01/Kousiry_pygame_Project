@@ -12,6 +12,7 @@ class Player(pygame.sprite.Sprite):
         #Scale image and establish (x,y) position and velocity
         scale_size = (80,80)
         self.image = pygame.transform.scale(self.player, scale_size)
+        self.walk_sound = pygame.mixer.Sound('attributes/footstep_grass_002.ogg')
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
@@ -26,8 +27,10 @@ class Player(pygame.sprite.Sprite):
     def move(self, keys):
         if keys[pygame.K_LEFT]:
             self.x -= self.vx
+            self.walk_sound.play()
         if keys[pygame.K_RIGHT]:
             self.x += self.vx
+            self.walk_sound.play()
         # set left/right max boundaries that prevent player from leaving screen
         if self.x > 950:
             self.x = 950
