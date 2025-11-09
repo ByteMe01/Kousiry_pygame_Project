@@ -9,4 +9,4 @@ def main_track():
     pygame.mixer.music.play()
 
 def end_main_track():
-    pygame.mixer.music.fadeout(3000)
+    pygame.mixer.music.fadeout(1000)

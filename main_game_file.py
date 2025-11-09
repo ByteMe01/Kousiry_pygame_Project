@@ -59,8 +59,10 @@ while running:
         #Set condition that ends game and displays final score
         if pygame.sprite.spritecollide(player, car_group, False):
             end_score = final_score()
+            player_choice = player_input()
             screen.fill("Blue")
             screen.blit(end_score, (220,300))
+            screen.blit(player_choice, (180,600))
             game_state = False
             end_main_track()
 
