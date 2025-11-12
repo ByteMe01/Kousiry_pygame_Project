@@ -1,8 +1,7 @@
 import pygame
 pygame.init()
 
-#Set game state flag, establish a starting time, init font 
-game_state = True
+#Establish a starting time, init font 
 start_time = pygame.time.get_ticks()
 score_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 100)
 instruction_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 30)
@@ -10,7 +9,6 @@ instruction_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 30)
 # if game is running, score clock is running
 # every second the player is alive, subtract that number with total time then render calculated value on screen
 def scoring_init():
-    if game_state == True:
         active_age = (pygame.time.get_ticks() - start_time)/1000
         score_system = f"Score: {int(active_age)}"
         score_surface = score_font.render(score_system, False, (0,0,0))

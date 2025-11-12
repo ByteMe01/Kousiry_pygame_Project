@@ -7,6 +7,7 @@ from music import *
 from util_params import *
 from background import *
 from scoring_system import *
+from title_screen import *
 
 # pygame setup
 pygame.init()
@@ -16,6 +17,14 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 background = place_background()
 
+#display title screen + instructions
+title = menu()
+user_instruction_1 = instruction_1()
+user_instruction_2 = instruction_2()
+screen.blit(title, (220,0))
+screen.blit(user_instruction_1, (295,300))
+screen.blit(user_instruction_2, (260,500))
+
 #Initialize all characters on screen and music
 player = Player()
 cars = Cars()
@@ -23,10 +32,13 @@ car_group = pygame.sprite.Group()
 for i in range(10):
     car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
 main_track()
+pregame_audio()
+
 
 #Set conditional flags for game operation
-game_state = True
+game_state = False
 running = True
+
 
 #Start game loop
 while running:
@@ -35,7 +47,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    if game_state == True:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                game_state = True
+                game_start() 
+    if game_state:            
         player_movement = pygame.key.get_pressed()
         player.move(player_movement)
 
@@ -64,6 +80,7 @@ while running:
             screen.blit(end_score, (220,300))
             screen.blit(player_choice, (180,600))
             game_state = False
+            game_over()
             end_main_track()
 
     # flip() the display to put your work on screen
