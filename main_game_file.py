@@ -15,15 +15,7 @@ pygame.init()
 # Make screen properties
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
-background = place_background()
-
-#display title screen + instructions
-title = menu()
-user_instruction_1 = instruction_1()
-user_instruction_2 = instruction_2()
-screen.blit(title, (220,0))
-screen.blit(user_instruction_1, (295,300))
-screen.blit(user_instruction_2, (260,500))
+background = place_background() 
 
 #Initialize all characters on screen and music
 player = Player()
@@ -39,7 +31,6 @@ pregame_audio()
 game_state = False
 running = True
 
-
 #Start game loop
 while running:
     # poll for events
@@ -47,10 +38,22 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        #display title screen + instructions
+        title_background = place_title_background()
+        screen.blit(title_background, (0,0))
+        title = menu()
+        user_instruction_1 = instruction_1()
+        user_instruction_2 = instruction_2()
+        screen.blit(title, (220,0))
+        screen.blit(user_instruction_1, (295,400))
+        screen.blit(user_instruction_2, (260,600))
+
+        #if player presses spacebar, game starts
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 game_state = True
-                game_start() 
+                game_start()
+
     if game_state:            
         player_movement = pygame.key.get_pressed()
         player.move(player_movement)
@@ -76,7 +79,7 @@ while running:
         if pygame.sprite.spritecollide(player, car_group, False):
             end_score = final_score()
             player_choice = player_input()
-            screen.fill("Blue")
+            screen.blit(title_background, (0,0))
             screen.blit(end_score, (220,300))
             screen.blit(player_choice, (180,600))
             game_state = False

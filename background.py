@@ -13,4 +13,13 @@ def place_background():
     for x in range (0, WIDTH, terrain_width):
         terrain_background.blit(terrain_surface, (x,0))
     return terrain_background
+ 
+def place_title_background():
+    title_image = 'attributes/pixel_sky.png'
+    title_surface = pygame.image.load(title_image)
+    title_background = pygame.Surface((WIDTH, HEIGHT))
+    title_width = title_surface.get_width()
 
+    for x in range (0, WIDTH, title_width):
+        title_background.blit(title_surface, (x,0))
+    return title_background

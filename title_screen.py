@@ -1,4 +1,5 @@
 import pygame
+from util_params import WIDTH, HEIGHT
 pygame.init()
 
 title_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 100)
@@ -16,4 +17,3 @@ def instruction_1():
 def instruction_2():
     instruction_surface_2 = instruction_font_2.render("Use arrow keys to move L & R", True, (255,255,255))
     return instruction_surface_2
-    
