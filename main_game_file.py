@@ -1,4 +1,4 @@
-# Example file showing a basic pygame "game loop"
+#Import required libraries
 import pygame
 from random import randint
 from player import *
@@ -21,7 +21,7 @@ background = place_background()
 player = Player()
 cars = Cars()
 car_group = pygame.sprite.Group()
-for i in range(10):
+for i in range(11):
     car_group.add(Cars(randint(0,WIDTH), randint(0, 200)))
 main_track()
 pregame_audio()
@@ -30,6 +30,7 @@ pregame_audio()
 #Set conditional flags for game operation
 game_state = False
 running = True
+space_pressed = False
 
 #display title screen + instructions
 title_background = place_title_background()
@@ -48,12 +49,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        #if player presses spacebar, game starts
+        #if player presses spacebar, game starts and space no longer functional
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE and not space_pressed:
+                t0 = pygame.time.get_ticks()
                 game_state = True
+                space_pressed = True
                 game_start()
 
+    # Once spaced is pressed, the actual game can run
     if game_state:            
         player_movement = pygame.key.get_pressed()
         player.move(player_movement)
@@ -71,17 +75,16 @@ while running:
         car_group.update()
         car_group.draw(screen)
 
-        # Set scoring system 
-        score = scoring_init()
+        # Set scoring system by assigning same number value to two variables for active score and final score
+        score, last_score = scoring_init(t0)
         screen.blit(score, (350,0))
 
         #Set condition that ends game and displays final score
         if pygame.sprite.spritecollide(player, car_group, False):
-            end_score = final_score()
+            end_score = final_score(last_score)
             player_choice = player_input()
             screen.blit(title_background, (0,0))
             screen.blit(end_score, (220,150))
-            #screen.blit(player_choice, (180,600))
             game_state = False
             game_over()
             end_main_track()
