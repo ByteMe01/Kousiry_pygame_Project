@@ -12,7 +12,7 @@ from title_screen import *
 # pygame setup
 pygame.init()
 
-# Make screen properties
+# Make screen properties66
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 background = place_background() 

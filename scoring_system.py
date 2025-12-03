@@ -11,7 +11,6 @@ instruction_font = pygame.font.Font("attributes/ComicStrip-KG3p.ttf", 30)
 def scoring_init(start_time):
     active_age = (pygame.time.get_ticks() - start_time)/1000
     score_system = f"Score: {int(active_age)}"
-    score_val = int(active_age)
     score_surface = score_font.render(score_system, False, (0,0,0))
     return score_surface, active_age
 

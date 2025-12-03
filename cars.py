@@ -27,7 +27,7 @@ class Cars(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.rect.center = (x,y)
-        self.vy = 3
+        self.vy = 3 
         
         # Car movement
     def update(self):
